@@ -51,14 +51,16 @@ def evaluate_model(model, dataloader):
     avg_loss = test_loss / len(dataloader)
     print(f"Test Loss: {avg_loss}")
 
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(20, 15))
     plt.plot(all_true, label="True Values", alpha=0.7)
     plt.plot(all_preds, label="Predictions", alpha=0.7)
-    plt.legend()
-    plt.title("Model Predictions vs True Values")
-    plt.xlabel("Sample Index")
-    plt.ylabel("Normalized Value")
+    plt.legend(fontsize=20)
+    plt.title("Liquid NN model's predictions vs true values", fontsize=24)
+    plt.xlabel("Sample Index", fontsize=20)
+    plt.ylabel("Normalized Value", fontsize=20)
     plt.grid(True)
+    plt.xticks(fontsize=16)
+    plt.yticks(fontsize=16)
     plt.show()
 
     return avg_loss

@@ -14,7 +14,7 @@ def load_and_process_dataset(file_path, city_name="Toronto", seq_length=30):
         raise ValueError(f"The dataset does not have a column named '{city_name}'.")
     data = data[["datetime", city_name]]
 
-    data = data.dropna() # Drop rows with missing values
+    data = data.dropna()
 
     data[city_name] = (data[city_name] - data[city_name].mean()) / data[city_name].std()
 

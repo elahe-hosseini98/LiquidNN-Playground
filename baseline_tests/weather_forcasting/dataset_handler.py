@@ -11,7 +11,7 @@ class WeatherDataset(Dataset):
         return len(self.data) - self.seq_length
 
     def __getitem__(self, idx):
-        x = self.data[idx:idx + self.seq_length, :-1]
-        y = self.data[idx + self.seq_length, -1]
-        return torch.tensor(x, dtype=torch.float32), torch.tensor(y, dtype=torch.float32)
+        X = self.data[idx:idx + self.seq_length]
+        y = self.data[idx + self.seq_length]
+        return X.unsqueeze(-1), y
 

@@ -44,14 +44,13 @@ def evaluate_model(model, dataloader):
             loss = criterion(y_pred.squeeze(), y_batch)
             test_loss += loss.item()
 
-            # Store predictions and true values
             all_preds.extend(y_pred.squeeze().tolist())
             all_true.extend(y_batch.tolist())
 
     avg_loss = test_loss / len(dataloader)
     print(f"Test Loss: {avg_loss}")
 
-    plt.figure(figsize=(20, 15))
+    plt.figure(figsize=(12, 6))
     plt.plot(all_true, label="True Values", alpha=0.7)
     plt.plot(all_preds, label="Predictions", alpha=0.7)
     plt.legend(fontsize=20)

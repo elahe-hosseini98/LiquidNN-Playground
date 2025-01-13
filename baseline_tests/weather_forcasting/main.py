@@ -2,6 +2,7 @@ from dataset_handler import WeatherDataset
 from torch.utils.data import DataLoader
 from datasets.historical_hourly_weather_data.read_process_data import load_and_process_dataset
 from LNN_pipeline import create_model, train_model, evaluate_model
+from baseline_model_pipeline import create_baseline_model, train_baseline_model, evaluate_baseline_model
 
 
 if __name__ == '__main__':
@@ -27,3 +28,20 @@ if __name__ == '__main__':
     model = create_model(input_size=1, hidden_size=20, output_size=1)
     train_model(model, train_dataloader, num_epochs=num_epochs)
     evaluate_model(model, test_dataloader)
+
+
+    # Transformer Model as a baseline for comparison
+    input_size = 1
+    d_model = 64
+    n_heads = 4
+    num_layers = 2
+    output_size = 1
+    dropout = 0.1
+    learning_rate = 0.001
+    num_epochs = 5
+
+    transformer_model = create_baseline_model(input_size, d_model, n_heads, num_layers, output_size, dropout)
+    trained_model = train_baseline_model(transformer_model, train_dataloader, learning_rate, num_epochs)
+    evaluate_baseline_model(trained_model, test_dataloader)
+
+
